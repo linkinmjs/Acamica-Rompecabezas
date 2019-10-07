@@ -1,3 +1,13 @@
+/* Paleta de colores */
+/* 
+    #EB4B5C
+    #68E2D9
+    #DBE7E6
+    #6DB4BD
+    #212D32 
+*/
+
+
 /*Código armado por La Foca Loca S.A. No modificar*/
 body {
   font-family: Arial, sans-serif;
@@ -29,13 +39,13 @@ li::before {
   display: table-cell;
   margin: 0;
   vertical-align: top;
-  
+  background: #DBE7E6;
+  color: #212D32;
 }
 .col-40 {
-  background: #FFF;
   width: 300px;
-  color: #000;
-  border-right: black solid 2px;
+  
+  padding: 1em 2em 0em 2em;
 }
 
 .col-60 {
@@ -53,18 +63,18 @@ li::before {
 }
 
 .tablero{
-  border: black solid 2px;
-  width: 902px;
+  border: #6DB4BD solid 68px;
+  border-radius: 30px;
+  width: 900px;
   height: 600px;
-  margin-left: 20%;
+  margin-left: 19%;
+  background: #DBE7E6;
 }
 
 #juego{
-  /* text-align: center; */
   animation: fadein 2s;
   background-color: #e84a5e;
   display: flex;
-  flex-direction: column;
   flex-wrap: wrap;
   max-width: 600px;
   max-height: 600px;
@@ -78,6 +88,10 @@ li::before {
 .piezas img{
   max-width: 100%;
   max-height: 100%;
+}
+#pieza9{
+  width: 200px;
+  height: 200px;
 }
 
   @keyframes fadein {
