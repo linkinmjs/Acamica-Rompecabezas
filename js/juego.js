@@ -75,7 +75,8 @@ if(posicionValida(filaPos1,columnaPos1)){
 
 // Actualiza la posición de la pieza vacía
 function actualizarPosicionVacia(nuevaFila, nuevaColumna) {
-  //COMPLETAR
+  filaVacia = nuevaFila;
+  columnaVacia = nuevaColumna
 }
 
 
@@ -109,7 +110,7 @@ function moverEnDireccion(direccion) {
     agregarMovimiento('codigosDireccion.ABAJO');
     nuevaFilaPiezaVacia = filaVacia - 1;
     nuevaColumnaPiezaVacia = columnaVacia;
-    intercambiarPosicionesGrilla(nuevaFilaPiezaVacia, nuevaColumnaPiezaVacia, filaVacia, columnaVacia);
+    
   }
 
   // Mueve pieza hacia arriba, reemplazandola con la blanca
@@ -117,7 +118,7 @@ function moverEnDireccion(direccion) {
     agregarMovimiento('codigosDireccion.ARRIBA');
     nuevaFilaPiezaVacia = filaVacia + 1;
     nuevaColumnaPiezaVacia = columnaVacia;
-    intercambiarPosicionesGrilla(nuevaFilaPiezaVacia, nuevaColumnaPiezaVacia, filaVacia, columnaVacia);
+    
   }
 
   // Mueve pieza hacia la derecha, reemplazandola con la blanca
@@ -125,7 +126,7 @@ function moverEnDireccion(direccion) {
     nuevaFilaPiezaVacia = filaVacia;
     nuevaColumnaPiezaVacia = columnaVacia +1;
     agregarMovimiento('codigosDireccion.DERECHA');
-    intercambiarPosicionesGrilla(nuevaFilaPiezaVacia, nuevaColumnaPiezaVacia, filaVacia, columnaVacia);
+    
   }
 
   // Mueve pieza hacia la izquierda, reemplazandola con la blanca
@@ -133,7 +134,7 @@ function moverEnDireccion(direccion) {
     nuevaFilaPiezaVacia = filaVacia;
     nuevaColumnaPiezaVacia = columnaVacia -1;
     agregarMovimiento('codigosDireccion.IZQUIERDA');
-    intercambiarPosicionesGrilla(nuevaFilaPiezaVacia, nuevaColumnaPiezaVacia, filaVacia, columnaVacia);
+    
   }
 
   /* A continuación se chequea si la nueva posición es válida, si lo es, se intercambia. 
@@ -141,6 +142,7 @@ function moverEnDireccion(direccion) {
   las funciones posicionValida, intercambiarPosicionesGrilla y actualizarPosicionVacia */
   // TO-DO
   if (posicionValida(nuevaFilaPiezaVacia, nuevaColumnaPiezaVacia)) {
+    intercambiarPosicionesGrilla(nuevaFilaPiezaVacia, nuevaColumnaPiezaVacia, filaVacia, columnaVacia);
     intercambiarPosiciones(filaVacia, columnaVacia, nuevaFilaPiezaVacia, nuevaColumnaPiezaVacia);
     actualizarPosicionVacia(nuevaFilaPiezaVacia, nuevaColumnaPiezaVacia);
 
@@ -208,7 +210,6 @@ function actualizarUltimoMovimiento(direccion) {
   ultimoMov = document.getElementById('flecha');
   switch (direccion) {
     case codigosDireccion.ARRIBA:
-      console.log('se apretó arriba')
       ultimoMov.textContent = '↑';
       break;
     case codigosDireccion.ABAJO:
