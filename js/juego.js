@@ -33,10 +33,9 @@ function mostrarInstrucciones(instrucciones) {
 
 /* COMPLETAR: Crear función que agregue la última dirección al arreglo de movimientos
 y utilice actualizarUltimoMovimiento para mostrarlo en pantalla */
-function agregarMovimiento(mov){
+function agregarMovimiento(mov) {
   actualizarUltimoMovimiento();
   movimientos.push(mov);
-  console.log('pasó por agregarMovimiento');
 }
 
 
@@ -62,7 +61,16 @@ En vez de intercambiar esos valores vamos a terminar teniendo en ambas posicione
 Se te ocurre cómo solucionar esto con una variable temporal?
 */
 function intercambiarPosicionesGrilla(filaPos1, columnaPos1, filaPos2, columnaPos2) {
-  //COMPLETAR
+  console.log('se ejecutará (intercambiarPosiciones('+filaPos1+','+columnaPos1+','+filaPos2+','+columnaPos2+')');
+
+if(posicionValida(filaPos1,columnaPos1)){
+   console.log('porque es valida');
+}else{
+  console.log('pero no es valida!');
+}
+
+
+
 }
 
 // Actualiza la posición de la pieza vacía
@@ -73,49 +81,65 @@ function actualizarPosicionVacia(nuevaFila, nuevaColumna) {
 
 // Para chequear si la posicón está dentro de la grilla.
 function posicionValida(fila, columna) {
-  //COMPLETAR
+
+  if (fila < 3 && columna < 3){
+    if(fila !== filaVacia || columna !== columnaVacia){
+      return true;
+    }else{
+      return false;
+    }
+  }else{
+      return false;
+
+  }
+
 }
 
 /* Movimiento de fichas, en este caso la que se mueve es la blanca intercambiando su posición con otro elemento.
 Las direcciones están dadas por números que representa: arriba (38), abajo (40), izquierda (37), derecha (39) */
 function moverEnDireccion(direccion) {
+  
   var nuevaFilaPiezaVacia;
   var nuevaColumnaPiezaVacia;
 
+
+
   // Mueve pieza hacia la abajo, reemplazandola con la blanca
   if (direccion === codigosDireccion.ABAJO) {
-    console.log('Se presionó ABAJO');
     agregarMovimiento('codigosDireccion.ABAJO');
     nuevaFilaPiezaVacia = filaVacia - 1;
     nuevaColumnaPiezaVacia = columnaVacia;
+    intercambiarPosicionesGrilla(nuevaFilaPiezaVacia, nuevaColumnaPiezaVacia, filaVacia, columnaVacia);
   }
 
   // Mueve pieza hacia arriba, reemplazandola con la blanca
   else if (direccion === codigosDireccion.ARRIBA) {
-    console.log('Se presionó ARRIBA');
     agregarMovimiento('codigosDireccion.ARRIBA');
     nuevaFilaPiezaVacia = filaVacia + 1;
     nuevaColumnaPiezaVacia = columnaVacia;
+    intercambiarPosicionesGrilla(nuevaFilaPiezaVacia, nuevaColumnaPiezaVacia, filaVacia, columnaVacia);
   }
 
   // Mueve pieza hacia la derecha, reemplazandola con la blanca
   else if (direccion === codigosDireccion.DERECHA) {
-    //COMPLETAR
-    console.log('Se presionó DERECHA');
+    nuevaFilaPiezaVacia = filaVacia;
+    nuevaColumnaPiezaVacia = columnaVacia +1;
     agregarMovimiento('codigosDireccion.DERECHA');
+    intercambiarPosicionesGrilla(nuevaFilaPiezaVacia, nuevaColumnaPiezaVacia, filaVacia, columnaVacia);
   }
 
   // Mueve pieza hacia la izquierda, reemplazandola con la blanca
   else if (direccion === codigosDireccion.IZQUIERDA) {
-    // COMPLETAR
-    console.log('Se presionó IZQUIERDA');
+    nuevaFilaPiezaVacia = filaVacia;
+    nuevaColumnaPiezaVacia = columnaVacia -1;
     agregarMovimiento('codigosDireccion.IZQUIERDA');
+    intercambiarPosicionesGrilla(nuevaFilaPiezaVacia, nuevaColumnaPiezaVacia, filaVacia, columnaVacia);
   }
 
   /* A continuación se chequea si la nueva posición es válida, si lo es, se intercambia. 
   Para que esta parte del código funcione correctamente deberás haber implementado 
   las funciones posicionValida, intercambiarPosicionesGrilla y actualizarPosicionVacia */
-
+  // TO-DO
   if (posicionValida(nuevaFilaPiezaVacia, nuevaColumnaPiezaVacia)) {
     intercambiarPosiciones(filaVacia, columnaVacia, nuevaFilaPiezaVacia, nuevaColumnaPiezaVacia);
     actualizarPosicionVacia(nuevaFilaPiezaVacia, nuevaColumnaPiezaVacia);
@@ -181,7 +205,6 @@ function intercambiarPosicionesDOM(idPieza1, idPieza2) {
 /* Actualiza la representación visual del último movimiento 
 en la pantalla, representado con una flecha. */
 function actualizarUltimoMovimiento(direccion) {
-  console.log('comenzó actualizarUltimomovimiento');
   ultimoMov = document.getElementById('flecha');
   switch (direccion) {
     case codigosDireccion.ARRIBA:
